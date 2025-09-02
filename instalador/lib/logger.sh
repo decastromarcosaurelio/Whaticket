@@ -4,16 +4,16 @@
 # Autor: Laowang (grumpy but precise)
 # 
 
-# Cores para output do terminal
-readonly RED='\033[0;31m'
-readonly GREEN='\033[0;32m'
-readonly YELLOW='\033[1;33m'
-readonly BLUE='\033[0;34m'
-readonly PURPLE='\033[0;35m'
-readonly CYAN='\033[0;36m'
-readonly WHITE='\033[1;37m'
-readonly GRAY='\033[0;37m'
-readonly NC='\033[0m' # No Color
+# Cores para output do terminal (namespace LOG_ para evitar conflitos)
+readonly LOG_RED='\033[0;31m'
+readonly LOG_GREEN='\033[0;32m'
+readonly LOG_YELLOW='\033[1;33m'
+readonly LOG_BLUE='\033[0;34m'
+readonly LOG_PURPLE='\033[0;35m'
+readonly LOG_CYAN='\033[0;36m'
+readonly LOG_WHITE='\033[1;37m'
+readonly LOG_GRAY='\033[0;37m'
+readonly LOG_NC='\033[0m' # No Color
 
 # Configurações de log padrão
 LOG_DIR="${LOG_DIR:-./logs}"
@@ -171,7 +171,7 @@ log_progress() {
         bar+="░"
     done
     
-    printf "\r${CYAN}[%s] %3d%% %s${NC}" "$bar" "$percent" "$message"
+    printf "\r${LOG_CYAN}[%s] %3d%% %s${LOG_NC}" "$bar" "$percent" "$message"
     
     if [[ $percent -eq 100 ]]; then
         echo # Nova linha quando completar
@@ -230,12 +230,12 @@ _log() {
     
     # Definir cor baseada no nível
     case $level in
-        "DEBUG") color="$GRAY" ;;
-        "INFO")  color="$GREEN" ;;
-        "WARN")  color="$YELLOW" ;;
-        "ERROR") color="$RED" ;;
-        "FATAL") color="$PURPLE" ;;
-        *)       color="$WHITE" ;;
+        "DEBUG") color="$LOG_GRAY" ;;
+        "INFO")  color="$LOG_GREEN" ;;
+        "WARN")  color="$LOG_YELLOW" ;;
+        "ERROR") color="$LOG_RED" ;;
+        "FATAL") color="$LOG_PURPLE" ;;
+        *)       color="$LOG_WHITE" ;;
     esac
     
     # Definir arquivo de destino
@@ -257,7 +257,7 @@ _log() {
     fi
     
     # Output no terminal com cor
-    echo -e "${color}[$level]${NC} $COMPONENT_NAME: $message"
+    echo -e "${color}[$level]${LOG_NC} $COMPONENT_NAME: $message"
 }
 
 #######################################
