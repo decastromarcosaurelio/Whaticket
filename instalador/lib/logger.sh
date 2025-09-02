@@ -5,19 +5,19 @@
 # 
 
 # Guard: prevenir carregamento múltiplo do módulo
-[[ -n "$LOGGER_LOADED" ]] && return 0
+[[ -n "${LOGGER_LOADED:-}" ]] && return 0
 
 # Cores para output do terminal (namespace LOG_ para evitar conflitos)
 # Verificação condicional para prevenir erro de readonly variable
-[[ -z "$LOG_RED" ]] && readonly LOG_RED='\033[0;31m'
-[[ -z "$LOG_GREEN" ]] && readonly LOG_GREEN='\033[0;32m'
-[[ -z "$LOG_YELLOW" ]] && readonly LOG_YELLOW='\033[1;33m'
-[[ -z "$LOG_BLUE" ]] && readonly LOG_BLUE='\033[0;34m'
-[[ -z "$LOG_PURPLE" ]] && readonly LOG_PURPLE='\033[0;35m'
-[[ -z "$LOG_CYAN" ]] && readonly LOG_CYAN='\033[0;36m'
-[[ -z "$LOG_WHITE" ]] && readonly LOG_WHITE='\033[1;37m'
-[[ -z "$LOG_GRAY" ]] && readonly LOG_GRAY='\033[0;37m'
-[[ -z "$LOG_NC" ]] && readonly LOG_NC='\033[0m' # No Color
+[[ -z "${LOG_RED:-}" ]] && readonly LOG_RED='\033[0;31m'
+[[ -z "${LOG_GREEN:-}" ]] && readonly LOG_GREEN='\033[0;32m'
+[[ -z "${LOG_YELLOW:-}" ]] && readonly LOG_YELLOW='\033[1;33m'
+[[ -z "${LOG_BLUE:-}" ]] && readonly LOG_BLUE='\033[0;34m'
+[[ -z "${LOG_PURPLE:-}" ]] && readonly LOG_PURPLE='\033[0;35m'
+[[ -z "${LOG_CYAN:-}" ]] && readonly LOG_CYAN='\033[0;36m'
+[[ -z "${LOG_WHITE:-}" ]] && readonly LOG_WHITE='\033[1;37m'
+[[ -z "${LOG_GRAY:-}" ]] && readonly LOG_GRAY='\033[0;37m'
+[[ -z "${LOG_NC:-}" ]] && readonly LOG_NC='\033[0m' # No Color
 
 # Configurações de log padrão
 LOG_DIR="${LOG_DIR:-./logs}"
